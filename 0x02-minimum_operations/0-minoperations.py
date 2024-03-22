@@ -11,10 +11,14 @@ def minOperations(n):
 
     if n <= 1:
         return 0
-    
-    min_operations = float('inf')
-    for i in range(1, int(n**0.5)+1):
-        if n % i == 0:
-            min_operations = min(min_operations, i + n // i)
 
-    return min_operations
+    # Initialize an array to store minimum operations for each count of characters
+    dp = [0] * (n + 1)
+
+    for i in range(2, n + 1):
+        dp[i] = i
+        for j in range(2, int(i ** 0.5) + 1):
+            if i % j == 0:
+                dp[i] = min(dp[i], dp[j] + i // j)  # Take the minimum of current value and possible combination of factors
+
+    return dp[n]
