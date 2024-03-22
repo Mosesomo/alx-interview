@@ -9,38 +9,38 @@ def minOperations(n):
     in the file.
     """
 
-    pasted_chars = 1
+    current_len = 1
     clipboard = 0
-    counter = 0
+    num_operations = 0
 
-    while pasted_chars < n:
+    while current_len < n:
         if clipboard == 0:
             # copyall
-            clipboard = pasted_chars
+            clipboard = current_len
             # increment operations counter
-            counter += 1
+            num_operations += 1
 
         # if haven't pasted anything yet
-        if pasted_chars == 1:
+        if current_len == 1:
             # paste
-            pasted_chars += clipboard
+            current_len += clipboard
             # increment operations counter
-            counter += 1
+            num_operations += 1
             # continue to next loop
             continue
 
-        remaining = n - pasted_chars
+        remaining = n - current_len
         if remaining < clipboard:
             return 0
 
-        if remaining % pasted_chars != 0:
-            pasted_chars += clipboard
-            counter += 1
+        if remaining % current_len != 0:
+            current_len += clipboard
+            num_operations += 1
         else:
-            clipboard = pasted_chars
-            pasted_chars += clipboard
-            counter += 2
-    if pasted_chars == n:
-        return counter
+            clipboard = current_len
+            current_len += clipboard
+            num_operations += 2
+    if current_len == n:
+        return num_operations
     else:
         return 0
