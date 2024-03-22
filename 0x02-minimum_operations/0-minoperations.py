@@ -9,16 +9,38 @@ def minOperations(n):
     in the file.
     """
 
-    if n <= 1:
+    pasted_chars = 1
+    clipboard = 0
+    counter = 0
+
+    while pasted_chars < n:
+        if clipboard == 0:
+            # copyall
+            clipboard = pasted_chars
+            # increment operations counter
+            counter += 1
+
+        # if haven't pasted anything yet
+        if pasted_chars == 1:
+            # paste
+            pasted_chars += clipboard
+            # increment operations counter
+            counter += 1
+            # continue to next loop
+            continue
+
+        remaining = n - pasted_chars
+        if remaining < clipboard:
+            return 0
+
+        if remaining % pasted_chars != 0:
+            pasted_chars += clipboard
+            counter += 1
+        else:
+            clipboard = pasted_chars
+            pasted_chars += clipboard
+            counter += 2
+    if pasted_chars == n:
+        return counter
+    else:
         return 0
-
-    # Initialize an array to store minimum operations for each count of characters
-    dp = [0] * (n + 1)
-
-    for i in range(2, n + 1):
-        dp[i] = i
-        for j in range(2, int(i ** 0.5) + 1):
-            if i % j == 0:
-                dp[i] = min(dp[i], dp[j] + i // j)  # Take the minimum of current value and possible combination of factors
-
-    return dp[n]
