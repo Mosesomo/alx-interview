@@ -2,7 +2,7 @@
 """Minimum Operations"""
 
 
-def minOperations(n: int) -> int:
+def minOperations(n):
     """method that calculates the
     fewest number of operations needed
     to result in exactly n H characters
@@ -18,4 +18,3 @@ def minOperations(n: int) -> int:
             min_operations = min(min_operations, i + n // i)
 
     return min_operations
-
