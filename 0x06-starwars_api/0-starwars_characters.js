@@ -8,8 +8,8 @@ let people = [];
 const names = [];
 
 const requestCharacters = async () => {
-  await new Promise(resolve => request(filmEndPoint, (err, res, body) => {
-    if (err || res.statusCode !== 200) {
+  await new Promise(resolve => request(filmEndPoint, (error, res, body) => {
+    if (error || res.statusCode !== 200) {
       console.error('Error: ', err, '| StatusCode: ', res.statusCode);
     } else {
       const jsonBody = JSON.parse(body);
