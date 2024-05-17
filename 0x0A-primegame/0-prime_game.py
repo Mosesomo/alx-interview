@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+
 def isWinner(x, nums):
     '''Determines the overall winner after x rounds.'''
     if x < 1 or not nums:
